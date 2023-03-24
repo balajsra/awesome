@@ -1,26 +1,3 @@
-#+TITLE: Personal Awesome WM Configuration
-#+AUTHOR: Sravan Balaji
-#+AUTO_TANGLE: t
-#+STARTUP: showeverything
-
-* Table of Contents :TOC_3:noexport:
-- [[#welcome][Welcome]]
-- [[#config][Config]]
-
-* Welcome
-
-My personal configuration of Awesome WM, written as an [[https://orgmode.org][Org Mode]] document.
-
-Run the block below with ~C-c C-c~ to tangle code blocks to config file.
-
-#+BEGIN_SRC emacs-lisp :tangle no
-(org-mode-restart)
-(org-babel-tangle)
-#+END_SRC
-
-* Config
-
-#+BEGIN_SRC lua :tangle rc.lua
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -585,4 +562,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-#+END_SRC
