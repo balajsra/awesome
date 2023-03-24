@@ -12,7 +12,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -45,12 +44,32 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init("/home/sravan/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
+terminal = "kitty"
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
+
+rofi_cmd               = "rofi -show combi"
+control_center_cmd     = "/home/sravan/.scripts/control-center.sh --rofi"
+brightness_cmd         = "/home/sravan/.scripts/brightness.sh --rofi"
+clipboard_cmd          = "rofi -show clipboard"
+rbw_cmd                = "rofi-rbw"
+volume_cmd             = "/home/sravan/.scripts/pactl.sh --rofi"
+media_cmd              = "/home/sravan/.scripts/playerctl.sh --rofi"
+notification_cmd       = "/home/sravan/.scripts/deadd.sh --rofi"
+session_cmd            = "/home/sravan/.scripts/session.sh --rofi"
+compositor_cmd         = "/home/sravan/.scripts/picom.sh --rofi"
+lower_volume_cmd       = "/home/sravan/.scripts/pactl.sh --lower"
+mute_volume_cmd        = "/home/sravan/.scripts/pactl.sh --mute"
+raise_volume_cmd       = "/home/sravan/.scripts/pactl.sh --raise"
+player_play_pause_cmd  = "/home/sravan/.scripts/playerctl.sh --play-pause"
+player_next_cmd        = "/home/sravan/.scripts/playerctl.sh --next"
+player_prev_cmd        = "/home/sravan/.scripts/playerctl.sh --prev"
+flameshot_cmd          = "flameshot gui"
+force_close_window_cmd = "xkill"
+trackpad_toggle_cmd    = "/home/sravan/.scripts/trackpad.sh"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -61,7 +80,6 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
@@ -73,10 +91,11 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+    -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
+    awful.layout.suit.floating,
 }
 -- }}}
 
@@ -97,9 +116,6 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
-
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
@@ -166,7 +182,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    set_wallpaper(s)
+    -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
@@ -210,7 +226,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            -- mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -258,9 +274,9 @@ globalkeys = gears.table.join(
               {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
+    awful.key({ modkey,           }, ".", function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
+    awful.key({ modkey,           }, ",", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
@@ -274,7 +290,7 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey, "Shift"   }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -324,9 +340,24 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
+
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    awful.key({ modkey }, "p", function() awful.spawn(rofi_cmd) end,
+              {description = "show rofi menu", group = "launcher"}),
+
+    -- Media Keys
+    awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn(lower_volume_cmd) end,
+              {description = "Lower audio volume", group = "media"}),
+    awful.key({ }, "XF86AudioMute",        function() awful.spawn(mute_volume_cmd) end,
+              {description = "Mute audio", group = "media"}),
+    awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn(raise_volume_cmd) end,
+              {description = "Raise audio volume", group = "media"}),
+    awful.key({ }, "XF86AudioPlay",        function() awful.spawn(player_play_pause_cmd) end,
+              {description = "Play / Pause Media", group = "media"}),
+    awful.key({ }, "XF86AudioNext",        function() awful.spawn(player_next_cmd) end,
+              {description = "Next media track", group = "media"}),
+    awful.key({ }, "XF86AudioPrev",        function() awful.spawn(player_prev_cmd) end,
+              {description = "Previous media track", group = "media"})
 )
 
 clientkeys = gears.table.join(
@@ -340,7 +371,7 @@ clientkeys = gears.table.join(
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
+    awful.key({ modkey,           }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
