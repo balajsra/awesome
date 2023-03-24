@@ -5,7 +5,16 @@
 
 * Table of Contents :TOC_3:noexport:
 - [[#welcome][Welcome]]
-- [[#config][Config]]
+- [[#libraries][Libraries]]
+- [[#error-handling][Error Handling]]
+- [[#variable-definitions][Variable Definitions]]
+- [[#menu][Menu]]
+- [[#keyboard-map-indicator-and-switcher][Keyboard Map Indicator and Switcher]]
+- [[#wibar][Wibar]]
+- [[#mouse-bindings][Mouse Bindings]]
+- [[#key-bindings][Key Bindings]]
+- [[#rules][Rules]]
+- [[#signals][Signals]]
 
 * Welcome
 
@@ -18,7 +27,7 @@ Run the block below with ~C-c C-c~ to tangle code blocks to config file.
 (org-babel-tangle)
 #+END_SRC
 
-* Config
+* Libraries
 
 #+BEGIN_SRC lua :tangle rc.lua
 -- If LuaRocks is installed, make sure that packages installed through it are
@@ -41,6 +50,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 #+END_SRC
+
+* Error Handling
 
 #+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Error handling
@@ -68,6 +79,8 @@ do
 end
 -- }}}
 #+END_SRC
+
+* Variable Definitions
 
 #+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Variable definitions
@@ -108,6 +121,8 @@ awful.layout.layouts = {
 -- }}}
 #+END_SRC
 
+* Menu
+
 #+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -132,10 +147,14 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 #+END_SRC
 
+* Keyboard Map Indicator and Switcher
+
 #+BEGIN_SRC lua :tangle rc.lua
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 #+END_SRC
+
+* Wibar
 
 #+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Wibar
@@ -253,6 +272,8 @@ end)
 -- }}}
 #+END_SRC
 
+* Mouse Bindings
+
 #+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
@@ -262,6 +283,8 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 #+END_SRC
+
+* Key Bindings
 
 #+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Key bindings
@@ -479,6 +502,8 @@ root.keys(globalkeys)
 -- }}}
 #+END_SRC
 
+* Rules
+
 #+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
@@ -538,6 +563,8 @@ awful.rules.rules = {
 }
 -- }}}
 #+END_SRC
+
+* Signals
 
 #+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Signals
