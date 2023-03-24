@@ -40,7 +40,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+#+END_SRC
 
+#+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -65,7 +67,9 @@ do
     end)
 end
 -- }}}
+#+END_SRC
 
+#+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
@@ -102,7 +106,9 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.se,
 }
 -- }}}
+#+END_SRC
 
+#+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
@@ -124,10 +130,14 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
+#+END_SRC
 
+#+BEGIN_SRC lua :tangle rc.lua
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
+#+END_SRC
 
+#+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
@@ -241,7 +251,9 @@ awful.screen.connect_for_each_screen(function(s)
     }
 end)
 -- }}}
+#+END_SRC
 
+#+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
@@ -249,7 +261,9 @@ root.buttons(gears.table.join(
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
+#+END_SRC
 
+#+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -463,7 +477,9 @@ clientbuttons = gears.table.join(
 -- Set keys
 root.keys(globalkeys)
 -- }}}
+#+END_SRC
 
+#+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
@@ -521,7 +537,9 @@ awful.rules.rules = {
     --   properties = { screen = 1, tag = "2" } },
 }
 -- }}}
+#+END_SRC
 
+#+BEGIN_SRC lua :tangle rc.lua
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
