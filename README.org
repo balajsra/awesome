@@ -437,15 +437,17 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioPrev",        function() awful.spawn(player_prev_cmd) end,
               {description = "Previous media track", group = "media"}),
 
-    -- Special Keys
+    -- Special Keys and Miscellaneous Shortcuts
     awful.key({ }, "XF86TouchpadToggle",   function() awful.spawn(trackpad_toggle_cmd) end,
               {description = "Enable / Disable Touchpad", group = "misc"}),
     awful.key({ }, "Print",                function() awful.spawn(flameshot_cmd) end,
-              {description = "Take a screenshot", group = "misc"})
+              {description = "Take a screenshot", group = "misc"}),
+    awful.key({ modkey, "Shift", "Control" }, "c", function () awful.spawn(force_close_window_cmd) end,
+              {description = "force close window", group = "misc"})
 )
 
 clientkeys = gears.table.join(
-    awful.key({ modkey,           }, "f",
+    awful.key({ modkey, "Shift"   }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
             c:raise()
@@ -627,7 +629,7 @@ awful.rules.rules = {
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
       and not c.size_hints.user_position
