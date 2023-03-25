@@ -1,8 +1,3 @@
----------------------------------------------
--- Awesome theme which follows xrdb config --
---   by Yauhen Kirylau                    --
----------------------------------------------
-
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
@@ -14,7 +9,7 @@ local themes_path = gfs.get_themes_dir()
 local theme = dofile(themes_path.."default/theme.lua")
 -- load vector assets' generators for this theme
 
-theme.font          = "sans 8"
+theme.font          = "Ubuntu Nerd Font 11"
 
 theme.bg_normal     = xrdb.background
 theme.bg_focus      = xrdb.color12
@@ -27,11 +22,12 @@ theme.fg_focus      = theme.bg_normal
 theme.fg_urgent     = theme.bg_normal
 theme.fg_minimize   = theme.bg_normal
 
-theme.useless_gap   = dpi(3)
+theme.useless_gap   = dpi(10)
 theme.border_width  = dpi(2)
 theme.border_normal = xrdb.color0
 theme.border_focus  = theme.bg_focus
 theme.border_marked = xrdb.color10
+theme.gap_single_client = true
 
 -- There are other variable sets
 -- overriding the default one when
