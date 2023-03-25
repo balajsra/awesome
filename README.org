@@ -35,8 +35,8 @@
   - [[#new-client-appears][New Client Appears]]
   - [[#titlebar][Titlebar]]
   - [[#focus][Focus]]
-    - [[#sloppy-focus-focus-follows-mouse][Sloppy Focus (Focus follows Mouse)]]
-    - [[#border-color][Border Color]]
+    - [[#focus-follows-mouse][Focus follows Mouse]]
+    - [[#focus-border-color][Focus Border Color]]
 - [[#theme][Theme]]
 
 * Welcome
@@ -777,7 +777,7 @@ end)
 
 ** Focus
 
-*** Sloppy Focus (Focus follows Mouse)
+*** Focus follows Mouse
 
 Enable sloppy focus, so that focus follows mouse.
 
@@ -787,7 +787,7 @@ client.connect_signal("mouse::enter", function(c)
 end)
 #+END_SRC
 
-*** Border Color
+*** Focus Border Color
 
 #+BEGIN_SRC lua :tangle rc.lua
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
