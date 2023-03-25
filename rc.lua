@@ -46,13 +46,18 @@ end
 -- }}}
 
 -- {{{ Variable definitions
+-- Filepaths
+home_path           = "/home/sravan"
+awesome_config_path = home_path .. "/.config/awesome"
+awesome_config_file = awesome_config_path .. "/" .. "README.org"
+awesome_theme_file  = awesome_config_path .. "/" .. "theme.lua"
+
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/sravan/.config/awesome/theme.lua")
+beautiful.init(awesome_theme_file)
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
-editor = os.getenv("EDITOR") or "vim"
-editor_cmd = terminal .. " -e " .. editor
+editor = os.getenv("EDITOR") or "emacs"
 
 rofi_cmd               = "rofi -show combi"
 control_center_cmd     = "/home/sravan/.scripts/control-center.sh --rofi"
@@ -107,7 +112,7 @@ awful.layout.layouts = {
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "edit config", editor .. " " .. awesome_config_file },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end },
 }
