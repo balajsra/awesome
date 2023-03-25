@@ -9,7 +9,16 @@ local themes_path = gfs.get_themes_dir()
 local theme = dofile(themes_path.."default/theme.lua")
 -- load vector assets' generators for this theme
 
-theme.font          = "Ubuntu Nerd Font 11"
+-- local variables
+local font = "Ubuntu Nerd Font"
+local font_size = dpi(11)
+local gap_size = dpi(10)
+local border_size = dpi(2)
+local menu_height = dpi(20)
+local menu_width = dpi(200)
+local taglist_square_size = dpi(5)
+
+theme.font          = font .. " " .. tostring(font_size)
 
 theme.bg_normal     = xrdb.background
 theme.bg_focus      = xrdb.color12
@@ -22,8 +31,8 @@ theme.fg_focus      = theme.bg_normal
 theme.fg_urgent     = theme.bg_normal
 theme.fg_minimize   = theme.bg_normal
 
-theme.useless_gap   = dpi(10)
-theme.border_width  = dpi(2)
+theme.useless_gap   = gap_size
+theme.border_width  = border_size
 theme.border_normal = xrdb.color0
 theme.border_focus  = theme.bg_focus
 theme.border_marked = xrdb.color10
@@ -47,8 +56,8 @@ theme.tooltip_bg = theme.bg_normal
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
-theme.menu_height = dpi(16)
-theme.menu_width  = dpi(100)
+theme.menu_height = menu_height
+theme.menu_width  = menu_width
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -99,7 +108,6 @@ theme.awesome_icon = theme_assets.awesome_icon(
 )
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
