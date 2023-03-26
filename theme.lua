@@ -4,6 +4,8 @@ local dpi = xresources.apply_dpi
 local xrdb = xresources.get_current_theme()
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
+local shape = require("gears.shape")
+local naughty = require("naughty")
 
 -- inherit default theme
 local theme = dofile(themes_path.."default/theme.lua")
@@ -17,6 +19,11 @@ local border_size = dpi(2)
 local menu_height = dpi(20)
 local menu_width = dpi(200)
 local taglist_square_size = dpi(5)
+local notification_border_color = xrdb.color2
+local notification_shape = shape.rounded_rect
+local notification_max_width = dpi(700)
+local notification_max_height = dpi(125)
+local notification_icon_size = dpi(125)
 
 theme.font          = font .. " " .. tostring(font_size)
 
@@ -37,6 +44,18 @@ theme.border_normal = xrdb.color0
 theme.border_focus  = theme.bg_focus
 theme.border_marked = xrdb.color10
 theme.gap_single_client = true
+
+theme.notification_font = font
+theme.notification_bg = xrdb.background
+theme.notification_fg = xrdb.foreground
+theme.notification_border_width = border_size
+theme.notification_border_color = notification_border_color
+theme.notification_shape = notification_shape
+-- theme.notification_opacity
+theme.notification_margin = gap_size
+theme.notification_max_width = notification_max_width
+theme.notification_max_height = notification_max_height
+theme.notification_icon_size = notification_icon_size
 
 -- There are other variable sets
 -- overriding the default one when
