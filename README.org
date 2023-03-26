@@ -66,6 +66,12 @@ local awful = require("awful")
 require("awful.autofocus")
 #+END_SRC
 
+Remote execution (i.e., control awesome from outside awesome)
+
+#+BEGIN_SRC lua :tangle rc.lua
+require("awful.remote")
+#+END_SRC
+
 Widget and layout library
 
 #+BEGIN_SRC lua :tangle rc.lua
