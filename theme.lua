@@ -16,6 +16,9 @@ local border_size = dpi(2)
 local menu_height = dpi(20)
 local menu_width = dpi(200)
 local taglist_square_size = dpi(5)
+
+local notification_font = "Ubuntu Nerd Font"
+local notification_font_size = dpi(12)
 local notification_border_color = xrdb.color2
 local notification_shape = shape.rounded_rect
 local notification_max_width = dpi(700)
@@ -42,7 +45,7 @@ theme.border_focus  = theme.bg_focus
 theme.border_marked = xrdb.color10
 theme.gap_single_client = true
 
-theme.notification_font = font
+theme.notification_font = notification_font .. " " .. tostring(notification_font_size)
 theme.notification_bg = xrdb.background
 theme.notification_fg = xrdb.foreground
 theme.notification_border_width = border_size
