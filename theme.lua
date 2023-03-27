@@ -7,11 +7,8 @@ local themes_path = gfs.get_themes_dir()
 local shape = require("gears.shape")
 local naughty = require("naughty")
 
--- inherit default theme
 local theme = dofile(themes_path.."default/theme.lua")
--- load vector assets' generators for this theme
 
--- local variables
 local font = "Ubuntu Nerd Font"
 local font_size = dpi(11)
 local gap_size = dpi(10)
@@ -57,37 +54,21 @@ theme.notification_max_width = notification_max_width
 theme.notification_max_height = notification_max_height
 theme.notification_icon_size = notification_icon_size
 
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
--- tasklist_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
+naughty.config.padding = gap_size
+naughty.config.spacing = gap_size
+
+naughty.config.presets.critical.bg = xrdb.color1
+naughty.config.presets.critical.fg = xrdb.foreground
 
 theme.tooltip_fg = theme.fg_normal
 theme.tooltip_bg = theme.bg_normal
 
--- Variables set for theming the menu:
--- menu_[bg|fg]_[normal|focus]
--- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = menu_height
 theme.menu_width  = menu_width
 
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
-
--- Recolor Layout icons:
 theme = theme_assets.recolor_layout(theme, theme.fg_normal)
 
--- Recolor titlebar icons:
---
 local function darker(color_value, darker_n)
     local result = "#"
     for s in color_value:gmatch("[a-fA-F0-9][a-fA-F0-9]") do
@@ -117,16 +98,12 @@ theme = theme_assets.recolor_titlebar(
     theme, xrdb.color1, "focus", "press"
 )
 
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
--- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
     theme.menu_height, theme.bg_focus, theme.fg_focus
 )
 
--- Generate taglist squares:
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
@@ -134,14 +111,12 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
 
--- Try to determine if we are running light or dark colorscheme:
 local bg_numberic_value = 0;
 for s in theme.bg_normal:gmatch("[a-fA-F0-9][a-fA-F0-9]") do
     bg_numberic_value = bg_numberic_value + tonumber("0x"..s);
 end
 local is_dark_bg = (bg_numberic_value < 383)
 
--- Generate wallpaper:
 local wallpaper_bg = xrdb.color8
 local wallpaper_fg = xrdb.color7
 local wallpaper_alt_fg = xrdb.color12
@@ -153,5 +128,3 @@ theme.wallpaper = function(s)
 end
 
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

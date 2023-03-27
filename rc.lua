@@ -89,6 +89,9 @@ awful.layout.layouts = {
 
 taglist = { " ₁", "龎 ₂", " ₃", " ₄", "爵 ₅", " ₆", " ₇", " ₈", " ₉" }
 
+naughty.config.defaults.timeout = 10 -- in seconds
+naughty.config.defaults.position = "top_right"
+
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal_cmd .. " -e man awesome" },
