@@ -21,8 +21,7 @@ local notification_font = "Ubuntu Nerd Font"
 local notification_font_size = dpi(12)
 local notification_border_color = xrdb.color2
 local notification_shape = shape.rounded_rect
-local notification_max_width = dpi(700)
-local notification_max_height = dpi(125)
+local notification_width = dpi(700)
 local notification_icon_size = dpi(125)
 
 theme.font          = font .. " " .. tostring(font_size)
@@ -53,8 +52,7 @@ theme.notification_border_color = notification_border_color
 theme.notification_shape = notification_shape
 -- theme.notification_opacity
 theme.notification_margin = gap_size
-theme.notification_max_width = notification_max_width
-theme.notification_max_height = notification_max_height
+theme.notification_width = notification_width
 theme.notification_icon_size = notification_icon_size
 
 naughty.config.padding = gap_size
