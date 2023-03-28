@@ -1,4 +1,0 @@
-[submodule "awesomewm-micky"]
-	path = awesomewm-micky
-	url = git@github.com:basaran/awesomewm-micky.git
-	branch = master
