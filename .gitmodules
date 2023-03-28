@@ -1,0 +1,4 @@
+[submodule "awesomewm-micky"]
+	path = awesomewm-micky
+	url = git@github.com:balajsra/awesomewm-micky.git
+	branch = master
