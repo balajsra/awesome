@@ -18,7 +18,7 @@ local menu_width = dpi(200)
 local taglist_square_size = dpi(5)
 
 local notification_font = "Ubuntu Nerd Font"
-local notification_font_size = dpi(12)
+local notification_font_size = dpi(13)
 local notification_border_color = xrdb.color2
 local notification_shape = shape.rounded_rect
 local notification_width = dpi(700)
