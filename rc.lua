@@ -17,6 +17,8 @@ require("awful.hotkeys_popup.keys")
 
 require("awesomewm-micky")
 
+require("awesomewm-backham")
+
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",

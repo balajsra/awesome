@@ -125,6 +125,12 @@ Automatically move and center mouse cursors to the focused window
 require("awesomewm-micky")
 #+END_SRC
 
+Automatically focus back to the previous client on minimize and close
+
+#+BEGIN_SRC lua :tangle rc.lua
+require("awesomewm-backham")
+#+END_SRC
+
 * Error Handling
 
 Check if awesome encountered an error during startup and fell back to another config (This code will only ever execute for the fallback config)

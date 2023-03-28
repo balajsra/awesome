@@ -2,3 +2,7 @@
 	path = awesomewm-micky
 	url = git@github.com:balajsra/awesomewm-micky.git
 	branch = master
+[submodule "awesomewm-backham"]
+	path = awesomewm-backham
+	url = git@github.com:basaran/awesomewm-backham.git
+	branch = master
