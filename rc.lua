@@ -89,7 +89,7 @@ awful.layout.layouts = {
     awful.layout.suit.floating,
 }
 
-taglist = { " ₁", "龎 ₂", " ₃", " ₄", "爵 ₅", " ₆", " ₇", " ₈", " ₉" }
+taglist = { "󰍩 ₁", "󰗚 ₂", " ₃", " ₄", "󰖟 ₅", " ₆", "󰊢 ₇", " ₈", " ₉" }
 
 naughty.config.defaults.timeout = 10 -- in seconds
 naughty.config.defaults.position = "top_right"
